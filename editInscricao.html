@@ -1,0 +1,90 @@
+@extends('master')
+
+@section('content')
+    <main id="main">
+
+        <!-- ======= Breadcrumbs ======= -->
+        <div class="breadcrumbs">
+            <div class="container">
+
+                <div class="d-flex flex-row-reverse align-items-center">
+
+                    <ol>
+                        <li><a href="{{ route('home') }}">Home</a></li>
+                        <li>Atualizar Inscrição</li>
+                    </ol>
+                </div>
+
+            </div>
+        </div><!-- End Breadcrumbs -->
+
+        <div class="register">
+
+            <div class="container px-4">
+                <div class="row gx-5">
+
+
+                    <div class="col-12 col-md-12 m-auto shadow">
+                        <div class="section-header border-login">
+                            <p>Atualizar Inscrição</p>
+                        </div>
+
+
+                        @if ($errors->all())
+                            @foreach ($errors->all() as $error)
+                                <div class="alert alert-danger text-center">
+                                    {{ $error }}
+                                </div>
+                            @endforeach
+                        @endif
+
+                        <form role="form" class="form-style p-3 p-md-4"
+                            action="{{ route('updateUser', ['id' => Auth::user()->id]) }}" method="POST">
+                            @csrf
+                            <div class="row">
+                                <div class="col-xl-6 form-group">
+                                    <label>Digite seu nome completo:</label>
+                                    <input type="text" name="name" class="form-control"
+                                        placeholder="Diite seu nome completo" required
+                                        value="{{ old('name') ?? Auth::user()->name }}">
+                                </div>
+                                <div class="col-xl-6 form-group">
+                                    <label>E-mail:</label>
+                                    <input type="email" class="form-control" name="email"
+                                        placeholder="Informe seu E-mail" required
+                                        value="{{ old('email') ?? Auth::user()->email }}" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Nome da Equipe:</label>
+                                <input type="text" class="form-control" name="nome_equipe" id="subject"
+                                    placeholder="Informe o nome da equipe" required
+                                    value="{{ old('nome_equipe') ?? Auth::user()->nome_equipe }}">
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xl-6 form-group">
+                                    <label>Senha:</label>
+                                    <input type="password" class="form-control" name="password"
+                                        placeholder="Defina sua senha">
+                                </div>
+                                <div class="col-xl-6 form-group">
+                                    <label for="name">Confirmação de Senha:</label>
+                                    <input type="password" class="form-control" name="password_conf"
+                                        placeholder="Confirme sua senha">
+                                </div>
+                            </div>
+
+
+                            <div class="text-center mt-4 mb-3"><button type="submit">Atualizar</button></div>
+
+                        </form>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- End Contact Section -->
+    </main>
+@endsection

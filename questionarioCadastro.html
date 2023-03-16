@@ -1,0 +1,132 @@
+@extends('master')
+
+@section('content')
+    <main id="main">
+
+        <!-- ======= Breadcrumbs ======= -->
+        <div class="breadcrumbs">
+            <div class="container">
+
+                <div class="d-flex flex-row-reverse align-items-center">
+
+                    <ol>
+                        <li><a href="{{ route('home') }}">Home</a></li>
+                        <li>Questionário</li>
+                    </ol>
+                </div>
+
+            </div>
+        </div><!-- End Breadcrumbs -->
+
+        <div class="register">
+
+            <div class="container px-4">
+                <div class="row gx-5">
+
+
+                    <div class="col-12 col-md-12 m-auto shadow">
+                        <div class="section-header border-login">
+                            <p>Questionário</p>
+                        </div>
+
+
+                        @if ($errors->all())
+                            @foreach ($errors->all() as $error)
+                                <div class="alert alert-danger text-center">
+                                    {{ $error }}
+                                </div>
+                            @endforeach
+                        @endif
+
+                        <form role="form" class="form-style p-3 p-md-4" action="{{ route('saveUser') }}" method="POST">
+                            @csrf
+                            <div class="row">
+                                <div class="col-xl-6 form-group">
+                                    <label>Digite seu nome completo:</label>
+                                    <input type="text" name="name" class="form-control"
+                                        placeholder="Diite seu nome completo" required value="{{ old('nome') }}">
+                                </div>
+                                <div class="col-xl-6 form-group">
+                                    <label>E-mail:</label>
+                                    <input type="email" class="form-control" name="email"
+                                        placeholder="Informe seu E-mail" required value="{{ old('email') }}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Nome da Equipe:</label>
+                                <input type="text" class="form-control" name="nome_equipe" id="subject"
+                                    placeholder="Informe o nome da equipe" required value="{{ old('nome_equipe') }}">
+                            </div>
+                            {{-- <div class="row">
+                                <div class="col-xl-6 form-group">
+                                    <label>1 - Nome do estudante:</label>
+                                    <input type="text" name="estudante01" class="form-control"
+                                        placeholder="Digite o nome do estudante" required value="{{ old('estudante01') }}">
+                                </div>
+                                <div class="col-xl-6 form-group">
+                                    <label>2 - Nome do estudante:</label>
+                                    <input type="text" class="form-control" name="estudante02"
+                                        placeholder="Digite o nome do estudante" required value="{{ old('estudante02') }}">
+                                </div>
+                                <div class="col-xl-6 form-group">
+                                    <label>3 - Nome do estudante:</label>
+                                    <input type="text" class="form-control" name="estudante03"
+                                        placeholder="Digite o nome do estudante" required value="{{ old('estudante03') }}">
+                                </div>
+                            </div> --}}
+                            <div class="row">
+                                <div class="col-xl-6 form-group">
+                                    <label>Senha:</label>
+                                    <input type="password" class="form-control" name="password"
+                                        placeholder="Defina sua senha" required>
+                                </div>
+                                <div class="col-xl-6 form-group">
+                                    <label for="name">Confirmação de Senha:</label>
+                                    <input type="password" class="form-control" name="password_conf"
+                                        placeholder="Confirme sua senha" required>
+                                </div>
+                            </div>
+
+
+
+                            <div class="">
+                                <div class="">
+                                    <p><span class="clique-aqui">Ao finalizar seu cadastro</span>, você será direcionado
+                                        para
+                                        tela
+                                        de Login onde terá que acessar a plataforma e preencher o questionário.</p>
+                                </div>
+
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input input-check" type="checkbox" id="inlineCheckbox1"
+                                        value="option1" required>
+                                    <label class="form-check-label float-left" for="inlineCheckbox1">Afirmo que li as
+                                        informações que constam no Edital 01/2023 - 1ª OLIMPÍADA ESTADUAL EM HISTÓRIA DO
+                                        MARANHÃO - OEHM e concordo com os
+                                        termos.</label>
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="text-center mt-4"><button type="submit">Cadastrar</button></div>
+
+                        </form>
+
+
+
+                        <div class="text-center m-3 pb-3">
+                            <p>Já tem uma conta?<span class="clique-aqui"> <a href="{{ route('login') }}">Clique
+                                        aqui</a> </span></p>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- End Contact Section -->
+    </main>
+@endsection
